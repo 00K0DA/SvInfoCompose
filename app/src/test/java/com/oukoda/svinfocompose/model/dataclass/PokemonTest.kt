@@ -1,5 +1,6 @@
 package com.oukoda.svinfocompose.model.dataclass
 
+import com.oukoda.svinfocompose.model.enumclass.Type
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -10,8 +11,8 @@ class PokemonTest {
         val jsonObject = JSONObject(testJson)
         val pokemon = Pokemon.fromJson(jsonObject)
         assertEquals("ニャオハ", pokemon.name)
-        assertEquals(11, pokemon.type1)
-        assertEquals(null, pokemon.type2)
+        assertEquals(Type.Grass, pokemon.type1)
+        assertEquals(Type.None, pokemon.type2)
         assertEquals(40, pokemon.hp)
         assertEquals(61, pokemon.attack)
         assertEquals(54, pokemon.defence)
