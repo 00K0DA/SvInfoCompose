@@ -1,4 +1,4 @@
-package com.example.svinfocompose.ui.theme
+package com.oukoda.svinfocompose.theme
 
 import androidx.compose.ui.graphics.Color
 
