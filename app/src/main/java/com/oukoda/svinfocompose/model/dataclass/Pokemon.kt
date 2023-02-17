@@ -1,15 +1,16 @@
 package com.oukoda.svinfocompose.model.dataclass
 
+import com.oukoda.svinfocompose.model.enumclass.Type
 import org.json.JSONArray
 import org.json.JSONObject
 
 data class Pokemon(
     val pokemonId: String,
     val name: String,
-    val type1: Int,
-    val type2: Int?,
+    val type1: Type,
+    val type2: Type,
     val ability1: Int,
-    val ability2: Int?,
+    val ability2: Int,
     val hiddenAbility: Int,
     val hp: Int,
     val attack: Int,
@@ -47,21 +48,21 @@ data class Pokemon(
 
         fun fromJson(jsonObject: JSONObject): Pokemon {
             val type2 = if (jsonObject.get(JSON_KEY_TYPE_2)::class.java == Int::class.java) {
-                jsonObject.getInt(JSON_KEY_TYPE_2)
+                Type.fromValue(jsonObject.getInt(JSON_KEY_TYPE_2))
             } else {
-                null
+                Type.None
             }
 
             val ability2 = if (jsonObject.get(JSON_KEY_ABILITY_2)::class.java == Int::class.java) {
                 jsonObject.getInt(JSON_KEY_ABILITY_2)
             } else {
-                null
+                jsonObject.getInt(JSON_KEY_ABILITY_1)
             }
 
             return Pokemon(
                 pokemonId = jsonObject.getString(JSON_KEY_POKEMON_ID),
                 name = jsonObject.getString(JSON_KEY_NAME),
-                type1 = jsonObject.getInt(JSON_KEY_TYPE_1),
+                type1 = Type.fromValue(jsonObject.getInt(JSON_KEY_TYPE_1)),
                 type2 = type2,
                 ability1 = jsonObject.getInt(JSON_KEY_ABILITY_1),
                 ability2 = ability2,
