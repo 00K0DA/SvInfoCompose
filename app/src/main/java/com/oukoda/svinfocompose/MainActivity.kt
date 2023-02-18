@@ -21,6 +21,7 @@ import com.oukoda.svinfocompose.model.enumclass.BottomItems
 import com.oukoda.svinfocompose.theme.SvInfoComposeTheme
 import com.oukoda.svinfocompose.view.component.BottomBar
 import com.oukoda.svinfocompose.view.page.ListPage
+import com.oukoda.svinfocompose.view.component.BottomBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
