@@ -29,8 +29,8 @@ private val roundedCornerShape: Dp = 10.dp
 fun TypeView(type: Type) {
     Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(24.dp)
+            .width(64.dp)
+            .height(16.dp)
             .clip(RoundedCornerShape(roundedCornerShape))
             .background(type.color()),
         contentAlignment = Alignment.Center,

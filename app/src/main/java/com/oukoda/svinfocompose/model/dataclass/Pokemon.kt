@@ -1,5 +1,7 @@
 package com.oukoda.svinfocompose.model.dataclass
 
+import android.annotation.SuppressLint
+import android.content.Context
 import com.oukoda.svinfocompose.model.enumclass.Type
 import org.json.JSONArray
 import org.json.JSONObject
@@ -47,20 +49,20 @@ data class Pokemon(
         }
 
         fun fromJson(jsonObject: JSONObject): Pokemon {
-            val type2 = if (jsonObject.get(JSON_KEY_TYPE_2)::class.java == Int::class.java) {
+            val type2 = if (!jsonObject.isNull(JSON_KEY_TYPE_2)) {
                 Type.fromValue(jsonObject.getInt(JSON_KEY_TYPE_2))
             } else {
                 null
             }
 
-            val ability2 = if (jsonObject.get(JSON_KEY_ABILITY_2)::class.java == Int::class.java) {
+            val ability2 = if (!jsonObject.isNull(JSON_KEY_ABILITY_2)) {
                 jsonObject.getInt(JSON_KEY_ABILITY_2)
             } else {
                 jsonObject.getInt(JSON_KEY_ABILITY_1)
             }
 
             val hiddenAbility =
-                if (jsonObject.get(JSON_KEY_HIDDEN_ABILITY)::class.java == Int::class.java) {
+                if (!jsonObject.isNull(JSON_KEY_HIDDEN_ABILITY)) {
                     jsonObject.getInt(JSON_KEY_HIDDEN_ABILITY)
                 } else {
                     jsonObject.getInt(JSON_KEY_ABILITY_1)
@@ -88,4 +90,9 @@ data class Pokemon(
     }
 
     fun getTotalValue() = listOf(hp, attack, defence, spAttack, spDefence, speed).sum()
+
+    @SuppressLint("DiscouragedApi")
+    fun getImageId(context: Context): Int {
+        return context.resources.getIdentifier(pokemonId, "drawable", context.packageName)
+    }
 }
