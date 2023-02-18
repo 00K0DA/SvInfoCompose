@@ -7,6 +7,9 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
+val selectedColor = Color(0xFFFD7E00)
+val unSelectedColor = Color(0xFFFFFFFF)
+
 val typeColorNormal = Color(0xFFA8A878)
 val typeColorFight = Color(0xFFC03028)
 val typeColorFly = Color(0xFFA890F0)
