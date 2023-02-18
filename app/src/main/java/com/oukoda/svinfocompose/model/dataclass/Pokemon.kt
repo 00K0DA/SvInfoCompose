@@ -59,6 +59,13 @@ data class Pokemon(
                 jsonObject.getInt(JSON_KEY_ABILITY_1)
             }
 
+            val hiddenAbility =
+                if (jsonObject.get(JSON_KEY_HIDDEN_ABILITY)::class.java == Int::class.java) {
+                    jsonObject.getInt(JSON_KEY_HIDDEN_ABILITY)
+                } else {
+                    jsonObject.getInt(JSON_KEY_ABILITY_1)
+                }
+
             return Pokemon(
                 pokemonId = jsonObject.getString(JSON_KEY_POKEMON_ID),
                 name = jsonObject.getString(JSON_KEY_NAME),
@@ -66,7 +73,7 @@ data class Pokemon(
                 type2 = type2,
                 ability1 = jsonObject.getInt(JSON_KEY_ABILITY_1),
                 ability2 = ability2,
-                hiddenAbility = jsonObject.getInt(JSON_KEY_HIDDEN_ABILITY),
+                hiddenAbility = hiddenAbility,
                 hp = jsonObject.getInt(JSON_KEY_HP),
                 attack = jsonObject.getInt(JSON_KEY_ATTACK),
                 defence = jsonObject.getInt(JSON_KEY_DEFENCE),
