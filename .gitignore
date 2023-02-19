@@ -8,6 +8,7 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.idea/androidTestResultsUserPreferences.xml
+/app/src/main/assets/*.json
 /app/src/main/res/drawable/n*.png
 .DS_Store
 /build
