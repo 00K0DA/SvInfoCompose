@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.oukoda.svinfocompose.model.enumclass.BottomItems
 import com.oukoda.svinfocompose.theme.SvInfoComposeTheme
 import com.oukoda.svinfocompose.view.component.BottomBar
+import com.oukoda.svinfocompose.view.page.ListPage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +46,9 @@ fun MainScreen() {
         scaffoldState = rememberScaffoldState(),
         bottomBar = {
             BottomBar(startDestination) {
-                navController.navigate(it.route())
+                navController.navigate(it.route()) {
+                    launchSingleTop = true
+                }
             }
         },
     ) {
@@ -60,7 +63,7 @@ fun MainScreen() {
                 startDestination = startDestination,
             ) {
                 composable(BottomItems.List.route()) {
-                    Text(text = stringResource(id = BottomItems.List.stringId()))
+                    ListPage()
                 }
                 composable(BottomItems.Sort.route()) {
                     Text(text = stringResource(id = BottomItems.Sort.stringId()))
