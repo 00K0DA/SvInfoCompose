@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">SvInfoCompose</string>
+
+    <string name="type_name_normal">ノーマル</string>
+    <string name="type_name_fight">かくとう</string>
+    <string name="type_name_fly">ひこう</string>
+    <string name="type_name_poison">どく</string>
+    <string name="type_name_ground">じめん</string>
+    <string name="type_name_rock">いわ</string>
+    <string name="type_name_bug">むし</string>
+    <string name="type_name_ghost">ゴースト</string>
+    <string name="type_name_steel">はがね</string>
+    <string name="type_name_fire">ほのお</string>
+    <string name="type_name_water">みず</string>
+    <string name="type_name_grass">くさ</string>
+    <string name="type_name_electric">でんき</string>
+    <string name="type_name_psychic">エスパー</string>
+    <string name="type_name_ice">こおり</string>
+    <string name="type_name_dragon">ドラゴン</string>
+    <string name="type_name_dark">あく</string>
+    <string name="type_name_fairy">フェアリー</string>
+
 </resources>

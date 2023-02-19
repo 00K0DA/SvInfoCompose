@@ -12,7 +12,7 @@ class PokemonTest {
         val pokemon = Pokemon.fromJson(jsonObject)
         assertEquals("ニャオハ", pokemon.name)
         assertEquals(Type.Grass, pokemon.type1)
-        assertEquals(Type.None, pokemon.type2)
+        assertEquals(null, pokemon.type2)
         assertEquals(40, pokemon.hp)
         assertEquals(61, pokemon.attack)
         assertEquals(54, pokemon.defence)

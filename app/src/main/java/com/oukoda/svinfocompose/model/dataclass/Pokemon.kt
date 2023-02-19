@@ -8,7 +8,7 @@ data class Pokemon(
     val pokemonId: String,
     val name: String,
     val type1: Type,
-    val type2: Type,
+    val type2: Type?,
     val ability1: Int,
     val ability2: Int,
     val hiddenAbility: Int,
@@ -50,7 +50,7 @@ data class Pokemon(
             val type2 = if (jsonObject.get(JSON_KEY_TYPE_2)::class.java == Int::class.java) {
                 Type.fromValue(jsonObject.getInt(JSON_KEY_TYPE_2))
             } else {
-                Type.None
+                null
             }
 
             val ability2 = if (jsonObject.get(JSON_KEY_ABILITY_2)::class.java == Int::class.java) {
