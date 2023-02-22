@@ -40,8 +40,7 @@ fun ListItemView(
         modifier = Modifier
             .fillMaxWidth()
             .height(80.dp)
-            .clickable { onTap(pokemon) }
-            .padding(horizontal = 16.dp),
+            .clickable { onTap(pokemon) },
         elevation = 4.dp,
     ) {
         Row(

@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">SvInfoCompose</string>
 
+    <string name="bottom_item_list">一覧</string>
+    <string name="bottom_item_sort">ステータス順</string>
+    <string name="bottom_item_quiz">クイズ</string>
+
     <string name="type_name_normal">ノーマル</string>
     <string name="type_name_fight">かくとう</string>
     <string name="type_name_fly">ひこう</string>
