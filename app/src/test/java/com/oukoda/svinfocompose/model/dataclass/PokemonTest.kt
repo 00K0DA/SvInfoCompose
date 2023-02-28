@@ -5,6 +5,7 @@ import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
+@Suppress("NonAsciiCharacters")
 class PokemonTest {
     @Test
     fun fromJson() {

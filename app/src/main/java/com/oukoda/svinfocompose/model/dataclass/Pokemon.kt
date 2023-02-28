@@ -5,6 +5,7 @@ import android.content.Context
 import com.oukoda.svinfocompose.model.enumclass.Type
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.math.floor
 
 data class Pokemon(
     val pokemonId: String,
@@ -41,6 +42,10 @@ data class Pokemon(
         private const val JSON_KEY_LEVEL_MOVES = "levelMoves"
         private const val JSON_KEY_MACHINE_MOVE = "machineMoves"
         private const val JSON_KEY_EGG_MOVES = "eggMoves"
+
+        const val NATURE_CORRECT_POSITIVE = 1
+        const val NATURE_CORRECT_NONE = 0
+        const val NATURE_CORRECT_NEGATIVE = -1
 
         private fun jsonArrayToIntList(jsonArray: JSONArray): List<Int> {
             return (0 until jsonArray.length()).map {
@@ -90,6 +95,79 @@ data class Pokemon(
     }
 
     fun getTotalValue() = listOf(hp, attack, defence, spAttack, spDefence, speed).sum()
+
+    fun calculateHp(individualValue: Int, effortValue: Int, level: Int = 50): Int {
+        return floor(
+            (
+                (this.hp * 2 + individualValue + floor(effortValue / 4.0).toInt()) *
+                    level
+                ) /
+                100.0,
+        )
+            .toInt() + level + 10
+    }
+
+    fun calculateAttack(
+        individualValue: Int,
+        effortValue: Int,
+        natureCorrect: Int,
+        level: Int = 50,
+    ): Int {
+        return calculateStatus(this.attack, individualValue, effortValue, natureCorrect, level)
+    }
+
+    fun calculateDefence(
+        individualValue: Int,
+        effortValue: Int,
+        natureCorrect: Int,
+        level: Int = 50,
+    ): Int {
+        return calculateStatus(this.defence, individualValue, effortValue, natureCorrect, level)
+    }
+
+    fun calculateSpAttack(
+        individualValue: Int,
+        effortValue: Int,
+        natureCorrect: Int,
+        level: Int = 50,
+    ): Int {
+        return calculateStatus(this.spAttack, individualValue, effortValue, natureCorrect, level)
+    }
+
+    fun calculateSpDefence(
+        individualValue: Int,
+        effortValue: Int,
+        natureCorrect: Int,
+        level: Int = 50,
+    ): Int {
+        return calculateStatus(this.spDefence, individualValue, effortValue, natureCorrect, level)
+    }
+
+    fun calculateSpeed(
+        individualValue: Int,
+        effortValue: Int,
+        natureCorrect: Int,
+        level: Int = 50,
+    ): Int {
+        return calculateStatus(this.speed, individualValue, effortValue, natureCorrect, level)
+    }
+
+    private fun calculateStatus(
+        baseStats: Int,
+        individualValue: Int,
+        effortValue: Int,
+        natureCorrect: Int,
+        level: Int,
+    ): Int {
+        val statusValue: Int = floor(
+            ((baseStats * 2 + individualValue + floor(effortValue / 4.0).toInt()) * level) / 100.0,
+        ).toInt() + 5
+        return when (natureCorrect) {
+            NATURE_CORRECT_POSITIVE -> floor(statusValue * 1.1).toInt()
+            NATURE_CORRECT_NEGATIVE -> floor(statusValue * 0.9).toInt()
+            else -> statusValue
+        }
+    }
 
     @SuppressLint("DiscouragedApi")
     fun getImageId(context: Context): Int {
