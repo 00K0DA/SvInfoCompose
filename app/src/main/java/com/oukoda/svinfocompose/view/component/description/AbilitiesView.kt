@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,16 +30,21 @@ fun AbilitiesView(
     hiddenAbility: Ability,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        AbilityView(abilityLabelId = R.string.description_ability_1st, ability = ability1st)
-        if (ability1st.abilityId != ability2nd.abilityId) {
-            AbilityView(abilityLabelId = R.string.description_ability_2nd, ability = ability2nd)
+    Card(modifier = modifier, elevation = 4.dp) {
+        Column(
+            modifier = Modifier.padding(all = 8.dp),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            AbilityView(abilityLabelId = R.string.description_ability_1st, ability = ability1st)
+            if (ability1st.abilityId != ability2nd.abilityId) {
+                AbilityView(abilityLabelId = R.string.description_ability_2nd, ability = ability2nd)
+            }
+            AbilityView(
+                abilityLabelId = R.string.description_ability_hidden,
+                ability = hiddenAbility,
+            )
         }
-        AbilityView(abilityLabelId = R.string.description_ability_hidden, ability = hiddenAbility)
     }
 }
 
