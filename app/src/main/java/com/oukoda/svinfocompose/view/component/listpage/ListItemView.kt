@@ -65,14 +65,12 @@ fun ListItemView(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center,
             ) {
-                if (pokemon.name.contains("(")) {
+                if (pokemon.formName != null) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        val name = pokemon.name.split("(")[0]
-                        val form = pokemon.name.split("(")[1].replace(")", "")
-                        NameText(text = name)
-                        FormText(text = form)
+                        NameText(text = pokemon.name)
+                        FormText(text = pokemon.formName)
                     }
                 } else {
                     NameText(text = pokemon.name)
