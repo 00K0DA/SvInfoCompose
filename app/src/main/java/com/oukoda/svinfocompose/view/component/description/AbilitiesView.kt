@@ -5,8 +5,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -22,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.oukoda.svinfocompose.R
 import com.oukoda.svinfocompose.model.dataclass.Ability
+import com.oukoda.svinfocompose.view.component.common.ExpandView
 
 @Composable
 fun AbilitiesView(
@@ -32,25 +35,64 @@ fun AbilitiesView(
 ) {
     Card(modifier = modifier, elevation = 4.dp) {
         Column(
-            modifier = Modifier.padding(all = 8.dp),
+            modifier = Modifier.padding(all = 16.dp),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            AbilityView(abilityLabelId = R.string.description_ability_1st, ability = ability1st)
-            if (ability1st.abilityId != ability2nd.abilityId) {
-                AbilityView(abilityLabelId = R.string.description_ability_2nd, ability = ability2nd)
+            if (ability1st.abilityId == ability2nd.abilityId && ability1st.abilityId == hiddenAbility.abilityId) {
+                AbilityView(
+                    ability = ability1st,
+                    isHiddenAbility = false,
+                )
+            } else if (ability1st.abilityId == ability2nd.abilityId) {
+                AbilityView(
+                    ability = ability1st,
+                    isHiddenAbility = false,
+                )
+                AbilityView(
+                    ability = hiddenAbility,
+                    isHiddenAbility = true,
+                )
+            } else {
+                AbilityView(
+                    ability = ability1st,
+                    isHiddenAbility = false,
+                    abilityNumber = 1,
+                )
+                AbilityView(
+                    ability = ability2nd,
+                    isHiddenAbility = false,
+                    abilityNumber = 2,
+                )
+                AbilityView(
+                    ability = hiddenAbility,
+                    isHiddenAbility = true,
+                )
             }
-            AbilityView(
-                abilityLabelId = R.string.description_ability_hidden,
-                ability = hiddenAbility,
-            )
         }
     }
 }
 
 @Composable
-private fun AbilityView(abilityLabelId: Int, ability: Ability, modifier: Modifier = Modifier) {
+private fun AbilityView(
+    ability: Ability,
+    isHiddenAbility: Boolean,
+    modifier: Modifier = Modifier,
+    abilityNumber: Int? = null,
+) {
     var isExpand by remember { mutableStateOf(false) }
+
+    val abilityLabelId =
+        if (isHiddenAbility) {
+            R.string.description_ability_hidden
+        } else {
+            R.string.description_ability_normal
+        }
+    var abilityLabelString = stringResource(id = abilityLabelId)
+    abilityNumber?.let {
+        abilityLabelString += it
+    }
+
     Column(
         modifier = modifier.clickable { isExpand = !isExpand },
         horizontalAlignment = Alignment.Start,
@@ -61,10 +103,16 @@ private fun AbilityView(abilityLabelId: Int, ability: Ability, modifier: Modifie
         ) {
             Text(
                 modifier = Modifier.width(60.dp),
-                text = stringResource(id = abilityLabelId),
+                text = abilityLabelString,
                 fontSize = 14.sp,
             )
             Text(text = ability.name, fontSize = 20.sp)
+            Spacer(
+                modifier = Modifier
+                    .weight(1f, false)
+                    .fillMaxWidth(),
+            )
+            ExpandView(isExpand = isExpand, Modifier.size(24.dp))
         }
         AnimatedVisibility(visible = isExpand) {
             Text(text = ability.description, fontSize = 12.sp)
