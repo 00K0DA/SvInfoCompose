@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -67,9 +66,8 @@ fun ListItemView(
             if (pokemon.type2 == null) {
                 TypeView(type = pokemon.type1)
             } else {
-                Column() {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     TypeView(type = pokemon.type1)
-                    Spacer(modifier = Modifier.height(8.dp))
                     TypeView(type = pokemon.type2)
                 }
             }
