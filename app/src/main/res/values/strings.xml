@@ -27,4 +27,17 @@
     <string name="description_ability_1st">特性1: </string>
     <string name="description_ability_2nd">特性2: </string>
     <string name="description_ability_hidden">夢特性: </string>
+
+    <string name="status_row_hp">HP</string>
+    <string name="status_row_attack">攻撃</string>
+    <string name="status_row_defence">防御</string>
+    <string name="status_row_sp_attack">特攻</string>
+    <string name="status_row_sp_defence">特防</string>
+    <string name="status_row_speed">素早さ</string>
+
+    <string name="status_row_max">最大</string>
+    <string name="status_row_sub_max">準最大</string>
+    <string name="status_row_plane">無振り</string>
+    <string name="status_row_min">最小</string>
+
 </resources>

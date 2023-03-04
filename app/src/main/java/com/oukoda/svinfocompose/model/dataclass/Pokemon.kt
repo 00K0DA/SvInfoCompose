@@ -110,7 +110,7 @@ data class Pokemon(
     fun calculateAttack(
         individualValue: Int,
         effortValue: Int,
-        natureCorrect: Int,
+        natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
         return calculateStatus(this.attack, individualValue, effortValue, natureCorrect, level)
@@ -119,7 +119,7 @@ data class Pokemon(
     fun calculateDefence(
         individualValue: Int,
         effortValue: Int,
-        natureCorrect: Int,
+        natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
         return calculateStatus(this.defence, individualValue, effortValue, natureCorrect, level)
@@ -128,7 +128,7 @@ data class Pokemon(
     fun calculateSpAttack(
         individualValue: Int,
         effortValue: Int,
-        natureCorrect: Int,
+        natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
         return calculateStatus(this.spAttack, individualValue, effortValue, natureCorrect, level)
@@ -137,7 +137,7 @@ data class Pokemon(
     fun calculateSpDefence(
         individualValue: Int,
         effortValue: Int,
-        natureCorrect: Int,
+        natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
         return calculateStatus(this.spDefence, individualValue, effortValue, natureCorrect, level)
@@ -146,7 +146,7 @@ data class Pokemon(
     fun calculateSpeed(
         individualValue: Int,
         effortValue: Int,
-        natureCorrect: Int,
+        natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
         return calculateStatus(this.speed, individualValue, effortValue, natureCorrect, level)
