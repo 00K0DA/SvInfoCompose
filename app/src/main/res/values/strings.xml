@@ -24,9 +24,8 @@
     <string name="type_name_dark">あく</string>
     <string name="type_name_fairy">フェアリー</string>
 
-    <string name="description_ability_1st">特性1: </string>
-    <string name="description_ability_2nd">特性2: </string>
-    <string name="description_ability_hidden">夢特性: </string>
+    <string name="description_ability_normal">特性</string>
+    <string name="description_ability_hidden">夢特性</string>
 
     <string name="status_row_hp">HP</string>
     <string name="status_row_attack">攻撃</string>
