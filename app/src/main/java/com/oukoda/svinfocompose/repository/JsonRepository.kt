@@ -9,7 +9,7 @@ import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class JsonRepository(private val resource: Resources) {
+class JsonRepository(resource: Resources) {
     private var pokemonMap: Map<String, Pokemon>
     private var moveMap: Map<Int, Move>
     private var abilityMap: Map<Int, Ability>
@@ -38,6 +38,8 @@ class JsonRepository(private val resource: Resources) {
     fun getPokemonList() = pokemonMap.map { it.value }
 
     fun getPokemon(pokemonId: String) = pokemonMap[pokemonId]
+
+    fun getMoveList() = moveMap.values
 
     fun getMove(moveId: Int) = moveMap[moveId]
 

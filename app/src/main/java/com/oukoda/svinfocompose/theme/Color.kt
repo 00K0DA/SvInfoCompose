@@ -28,3 +28,7 @@ val typeColorIce = Color(0xFF98D8D8)
 val typeColorDragon = Color(0xFF7038F8)
 val typeColorDark = Color(0xFF705848)
 val typeColorFairy = Color(0xFFEE99AC)
+
+val moveCategoryPhysical = Color(0xFFEA5627)
+val moveCategorySpecial = Color(0xFF4A68D3)
+val moveCategoryStatus = Color(0xFF828282)

@@ -39,4 +39,8 @@
     <string name="status_row_plane">無振り</string>
     <string name="status_row_min">最小</string>
 
+    <string name="move_category_physical">物理</string>
+    <string name="move_category_special">特殊</string>
+    <string name="move_category_status">変化</string>
+
 </resources>

@@ -17,7 +17,7 @@ class MoveTest {
         assertEquals(359, move.moveId)
         assertEquals("アームハンマー", move.name)
         assertEquals(Type.Fight, move.moveType)
-        assertEquals(MoveCategory.Physics, move.category)
+        assertEquals(MoveCategory.Physical, move.category)
         assertEquals(100, move.power)
         assertEquals(MoveTarget.SelectOne, move.target)
         assertFalse(move.isDirect)
