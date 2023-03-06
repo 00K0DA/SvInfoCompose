@@ -1,6 +1,5 @@
 package com.oukoda.svinfocompose.view.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,17 +16,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
 import com.oukoda.svinfocompose.model.dataclass.Pokemon
 import com.oukoda.svinfocompose.repository.JsonRepository
 import com.oukoda.svinfocompose.theme.SvInfoComposeTheme
+import com.oukoda.svinfocompose.view.component.common.PokemonImageView
 
 @Composable
 fun ListItemView(
@@ -47,22 +44,15 @@ fun ListItemView(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            val context = LocalContext.current
             Text(
                 text = (number + 1).toString().padStart(3, '0'),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.ExtraBold,
             )
-            Image(
-                painter = rememberAsyncImagePainter(
-                    ImageRequest.Builder(context).data(data = pokemon.getImageId(context))
-                        .build(),
-                ),
-                contentDescription = "",
-                contentScale = ContentScale.Fit,
+            PokemonImageView(
+                pokemon = pokemon,
                 modifier = Modifier.size(80.dp),
             )
-
             if (pokemon.type2 == null) {
                 TypeView(type = pokemon.type1)
             } else {
