@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,10 +20,9 @@ import com.oukoda.svinfocompose.view.component.ListItemView
 import com.oukoda.svinfocompose.view.component.listpage.DescriptionView
 
 @Composable
-fun ListPage() {
+fun ListPage(repository: JsonRepository) {
     val ROUTE_LIST = "list"
     val ROUTE_DESCRIPTION = "desc"
-    val repository = JsonRepository(resource = LocalContext.current.resources)
     val pokemonList = repository.getPokemonList()
     val navController = rememberNavController()
     var selectedPokemon: Pokemon? = null
