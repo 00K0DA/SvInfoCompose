@@ -2,7 +2,8 @@ package com.oukoda.svinfocompose.view.component.description
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,8 +26,14 @@ fun NameTypeView(pokemon: Pokemon, modifier: Modifier = Modifier) {
         Text(
             text = pokemon.name,
             fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 8.dp),
         )
+        if (pokemon.formName != null) {
+            Text(
+                text = pokemon.formName,
+                fontSize = 16.sp,
+            )
+        }
+        Spacer(modifier = Modifier.size(8.dp))
         TypeView(type = pokemon.type1)
         pokemon.type2?.let {
             TypeView(type = pokemon.type2)

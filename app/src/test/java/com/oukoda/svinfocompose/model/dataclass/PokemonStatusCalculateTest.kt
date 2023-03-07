@@ -152,6 +152,7 @@ class PokemonStatusCalculateTest {
         val garchomp = Pokemon(
             "n445",
             "ガブリアス",
+            null,
             Type.Dragon,
             Type.Ground,
             8,

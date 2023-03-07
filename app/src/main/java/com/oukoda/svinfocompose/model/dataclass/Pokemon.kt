@@ -10,6 +10,7 @@ import kotlin.math.floor
 data class Pokemon(
     val pokemonId: String,
     val name: String,
+    val formName: String?,
     val type1: Type,
     val type2: Type?,
     val ability1: Int,
@@ -73,9 +74,22 @@ data class Pokemon(
                     jsonObject.getInt(JSON_KEY_ABILITY_1)
                 }
 
+            val rawName = jsonObject.getString(JSON_KEY_NAME)
+            val name: String
+            val formName: String?
+            if (rawName.contains("(")) {
+                val splitName = rawName.split("(")
+                name = splitName[0].removeSuffix(" ")
+                formName = splitName[1].removeSuffix(")")
+            } else {
+                name = rawName
+                formName = null
+            }
+
             return Pokemon(
                 pokemonId = jsonObject.getString(JSON_KEY_POKEMON_ID),
-                name = jsonObject.getString(JSON_KEY_NAME),
+                name = name,
+                formName = formName,
                 type1 = Type.fromValue(jsonObject.getInt(JSON_KEY_TYPE_1)),
                 type2 = type2,
                 ability1 = jsonObject.getInt(JSON_KEY_ABILITY_1),
