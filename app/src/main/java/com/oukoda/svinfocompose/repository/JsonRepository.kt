@@ -9,7 +9,7 @@ import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class JsonRepository(resource: Resources) {
+class JsonRepository private constructor(resource: Resources) {
     private var pokemonMap: Map<String, Pokemon>
     private var moveMap: Map<Int, Move>
     private var abilityMap: Map<Int, Ability>
@@ -49,6 +49,17 @@ class JsonRepository(resource: Resources) {
         private fun getJsonObject(resources: Resources, fileName: String): JSONArray {
             val assetManager = resources.assets
             return JSONArray(BufferedReader(InputStreamReader(assetManager.open(fileName))).readText())
+        }
+
+        private var INSTANCE: JsonRepository? = null
+
+        fun getInstance(resources: Resources): JsonRepository {
+            synchronized(this) {
+                if (INSTANCE == null) {
+                    INSTANCE = JsonRepository(resources)
+                }
+            }
+            return INSTANCE!!
         }
     }
 }
