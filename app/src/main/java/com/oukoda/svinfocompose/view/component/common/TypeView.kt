@@ -4,8 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -26,11 +26,10 @@ import com.oukoda.svinfocompose.theme.SvInfoComposeTheme
 private val roundedCornerShape: Dp = 10.dp
 
 @Composable
-fun TypeView(type: Type) {
+fun TypeView(type: Type, modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
-            .width(64.dp)
-            .height(16.dp)
+        modifier = modifier
+            .defaultMinSize(64.dp, 16.dp)
             .clip(RoundedCornerShape(roundedCornerShape))
             .background(type.color()),
         contentAlignment = Alignment.Center,
