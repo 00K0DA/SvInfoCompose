@@ -1,11 +1,13 @@
 package com.oukoda.svinfocompose.model.enumclass
 
-enum class SortType {
-    Number,
-    HP,
-    Attack,
-    Defence,
-    SpAttack,
-    SpDefence,
-    Speed,
+import com.oukoda.svinfocompose.R
+
+enum class SortType(val stringId: Int) {
+    Number(R.string.sort_type_number),
+    HP(R.string.sort_type_hp),
+    Attack(R.string.sort_type_attack),
+    Defence(R.string.sort_type_defence),
+    SpAttack(R.string.sort_type_sp_attack),
+    SpDefence(R.string.sort_type_sp_defence),
+    Speed(R.string.sort_type_speed),
 }

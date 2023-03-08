@@ -10,7 +10,7 @@ class PokemonTest {
     @Test
     fun fromJson_ニャオハ() {
         val jsonObject = JSONObject(testJson)
-        val pokemon = Pokemon.fromJson(jsonObject)
+        val pokemon = Pokemon.fromJson(0, jsonObject)
         assertEquals("ニャオハ", pokemon.name)
         assertEquals(null, pokemon.formName)
         assertEquals(Type.Grass, pokemon.type1)
@@ -27,7 +27,7 @@ class PokemonTest {
     @Test
     fun fromJson_パフュートン_メス() {
         val jsonObject = JSONObject(testJson2)
-        val pokemon = Pokemon.fromJson(jsonObject)
+        val pokemon = Pokemon.fromJson(0, jsonObject)
         assertEquals("パフュートン", pokemon.name)
         assertEquals("メスのすがた", pokemon.formName)
     }

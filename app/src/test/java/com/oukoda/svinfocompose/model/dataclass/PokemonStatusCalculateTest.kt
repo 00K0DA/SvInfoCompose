@@ -150,6 +150,7 @@ class PokemonStatusCalculateTest {
 
     companion object {
         val garchomp = Pokemon(
+            0,
             "n445",
             "ガブリアス",
             null,
