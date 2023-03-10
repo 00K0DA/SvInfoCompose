@@ -63,7 +63,7 @@ fun MoveView(move: Move, modifier: Modifier = Modifier) {
 @Composable
 fun MoveViewPreview() {
     SvInfoComposeTheme(darkTheme = true) {
-        val repository = JsonRepository(LocalContext.current.resources)
+        val repository = JsonRepository.getInstance(LocalContext.current.resources)
         LazyColumn(
             Modifier.padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),

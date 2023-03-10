@@ -59,7 +59,7 @@ fun MainScreen() {
     val resources = LocalContext.current.resources
     var repository: JsonRepository? by remember { mutableStateOf(null) }
     LaunchedEffect(Unit) {
-        repository = JsonRepository(resources)
+        repository = JsonRepository.getInstance(resources)
     }
     Box {
         Scaffold(

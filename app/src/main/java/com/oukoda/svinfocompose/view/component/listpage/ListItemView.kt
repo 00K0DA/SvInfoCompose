@@ -102,7 +102,7 @@ private fun FormText(text: String) {
 @Composable
 fun ListItemViewPreview() {
     SvInfoComposeTheme() {
-        val repository = JsonRepository(resource = LocalContext.current.resources)
+        val repository = JsonRepository.getInstance(LocalContext.current.resources)
         val pokemonList = repository.getPokemonList()
         LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             itemsIndexed(pokemonList) { index, pokemon ->
