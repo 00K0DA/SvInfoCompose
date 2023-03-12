@@ -52,4 +52,6 @@
     <string name="sort_type_sp_defence">特防順</string>
     <string name="sort_type_speed">素早さ順</string>
 
+    <string name="search_text_field_label">検索</string>
+
 </resources>
