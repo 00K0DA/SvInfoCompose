@@ -8,10 +8,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -25,6 +25,7 @@ import com.oukoda.svinfocompose.model.viewmodel.ListPageViewModel
 import com.oukoda.svinfocompose.repository.JsonRepository
 import com.oukoda.svinfocompose.view.component.ListItemView
 import com.oukoda.svinfocompose.view.component.listpage.DescriptionView
+import com.oukoda.svinfocompose.view.component.listpage.SearchTextField
 import com.oukoda.svinfocompose.view.component.listpage.SortView
 
 private const val ROUTE_LIST = "list"
@@ -39,6 +40,7 @@ fun ListPage(
 ) {
     val pokemonList by viewModel.showPokemonList.collectAsState()
     val sortType by viewModel.sortType.collectAsState()
+    val searchWord by viewModel.searchWord.collectAsState()
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = ROUTE_LIST) {
@@ -50,13 +52,25 @@ fun ListPage(
             ) {
                 item { Spacer(modifier = Modifier.height(16.dp)) }
                 item {
-                    Box(modifier = Modifier.fillMaxWidth()) {
-                        SortView(
-                            initialSortType = SortType.Number,
-                            onSelectSortType = { viewModel.sort(it) },
-                            onChangeSortMode = { viewModel.setSortMode(it) },
-                            modifier = Modifier.align(Alignment.CenterEnd),
-                        )
+                    SearchTextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        searchWord = searchWord,
+                        onValueChange = { viewModel.setSearchWord(it) },
+                    )
+                }
+                item {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                    ) {
+                        Box(modifier = Modifier.padding(vertical = 8.dp)) {
+                            SortView(
+                                initialSortType = SortType.Number,
+                                onSelectSortType = { viewModel.setSort(it) },
+                                onChangeSortMode = { viewModel.setSortMode(it) },
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                        }
                     }
                 }
                 itemsIndexed(pokemonList) { _, pokemon ->

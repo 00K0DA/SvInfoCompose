@@ -1,6 +1,5 @@
-package com.oukoda.svinfocompose.model.dataclass
+package com.oukoda.svinfocompose.util
 
-import com.oukoda.svinfocompose.util.Hira2KanaConverter
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -105,5 +104,44 @@ class Hira2KataConverterTest {
 
     private fun convertTest(input: String, expected: String) {
         assertEquals(expected, Hira2KanaConverter.convert(input))
+    }
+
+    @Test
+    fun test_カタカナがフィルタを通過すること() {
+        val testTaskList: List<Pair<String, String>> = listOf(
+            Pair("ガブリアス", "ガブリアス"),
+            Pair("ゼニガメ", "ゼニガメ"),
+            Pair("ヒトカゲ", "ヒトカゲ"),
+        )
+        testTaskList.forEach {
+            filterTest(it.first, it.second)
+        }
+    }
+
+    @Test
+    fun test_ひらがながフィルタを通過すること() {
+        val testTaskList: List<Pair<String, String>> = listOf(
+            Pair("がぶりあす", "がぶりあす"),
+            Pair("ぜにがめ", "ぜにがめ"),
+        )
+        testTaskList.forEach {
+            filterTest(it.first, it.second)
+        }
+    }
+
+    @Test
+    fun test_漢字がフィルタされること() {
+        val testTaskList: List<Pair<String, String>> = listOf(
+            Pair("古今トウザイ", "トウザイ"),
+            Pair("きそう天外", "きそう"),
+            Pair("抱フクゼッ倒", "フクゼッ"),
+        )
+        testTaskList.forEach {
+            filterTest(it.first, it.second)
+        }
+    }
+
+    private fun filterTest(input: String, expected: String) {
+        assertEquals(Hira2KanaConverter.hiraKataFilter(input), expected)
     }
 }
