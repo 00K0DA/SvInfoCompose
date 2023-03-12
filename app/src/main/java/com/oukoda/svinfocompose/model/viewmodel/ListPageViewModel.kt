@@ -15,11 +15,15 @@ import kotlinx.coroutines.flow.stateIn
 class ListPageViewModel(private val pokemonList: List<Pokemon>) : ViewModel() {
 
     private var selectedPokemon: Pokemon? = null
-    private var isAscending: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    var isAscending: MutableStateFlow<Boolean> = MutableStateFlow(true)
     var searchWord: MutableStateFlow<String> = MutableStateFlow("")
     var sortType: MutableStateFlow<SortType> = MutableStateFlow(SortType.Number)
 
-    val showPokemonList: StateFlow<List<Pokemon>> = combine(sortType, isAscending, searchWord) { sortType: SortType, isAscending: Boolean, searchWord: String ->
+    val showPokemonList: StateFlow<List<Pokemon>> = combine(
+        sortType,
+        isAscending,
+        searchWord,
+    ) { sortType: SortType, isAscending: Boolean, searchWord: String ->
         var newList = when (sortType) {
             SortType.Number -> pokemonList
             SortType.HP -> pokemonList.sortedBy { it.hp }

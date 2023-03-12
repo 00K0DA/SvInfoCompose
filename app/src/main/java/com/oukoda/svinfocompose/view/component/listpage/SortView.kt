@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,20 +22,13 @@ import com.oukoda.svinfocompose.model.enumclass.SortType
 
 @Composable
 fun SortView(
-    initialSortType: SortType,
+    sortType: SortType,
+    isAscending: Boolean,
     onSelectSortType: (sortType: SortType) -> Unit,
     onChangeSortMode: (isAscending: Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var sortType by rememberSaveable {
-        mutableStateOf(initialSortType)
-    }
-
-    var isExpand by remember {
-        mutableStateOf(false)
-    }
-
-    var isChecked by remember {
+    var isSelectTileExpand by remember {
         mutableStateOf(false)
     }
 
@@ -51,7 +43,7 @@ fun SortView(
                 )
             },
             onClick = {
-                isExpand = !isExpand
+                isSelectTileExpand = !isSelectTileExpand
             },
         )
 
@@ -61,27 +53,25 @@ fun SortView(
         ) {
             Text(text = "降順にする")
             Switch(
-                checked = isChecked,
+                checked = !isAscending,
                 onCheckedChange = {
-                    isChecked = it
-                    onChangeSortMode(!isChecked)
+                    onChangeSortMode(!isAscending)
                 },
             )
         }
     }
 
     DropdownMenu(
-        expanded = isExpand,
+        expanded = isSelectTileExpand,
         onDismissRequest = {
-            isExpand = false
+            isSelectTileExpand = false
         },
     ) {
         SortType.values().forEachIndexed { _, itemValue ->
             DropdownMenuItem(
                 onClick = {
-                    sortType = itemValue
                     onSelectSortType(itemValue)
-                    isExpand = false
+                    isSelectTileExpand = false
                 },
             ) {
                 Text(text = stringResource(id = itemValue.stringId))
