@@ -17,7 +17,7 @@ class JsonRepository private constructor(resource: Resources) {
     init {
         val pokemonJsonArray = getJsonObject(resource, "pokemon.json")
         pokemonMap = (0 until pokemonJsonArray.length()).associate {
-            val pokemon = Pokemon.fromJson(pokemonJsonArray[it] as JSONObject)
+            val pokemon = Pokemon.fromJson(it + 1, pokemonJsonArray[it] as JSONObject)
             pokemon.pokemonId to pokemon
         }
         val moveJsonArray = getJsonObject(resource, "move.json")

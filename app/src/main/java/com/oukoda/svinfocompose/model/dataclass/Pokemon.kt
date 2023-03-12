@@ -8,6 +8,7 @@ import org.json.JSONObject
 import kotlin.math.floor
 
 data class Pokemon(
+    val number: Int,
     val pokemonId: String,
     val name: String,
     val formName: String?,
@@ -54,7 +55,7 @@ data class Pokemon(
             }
         }
 
-        fun fromJson(jsonObject: JSONObject): Pokemon {
+        fun fromJson(number: Int, jsonObject: JSONObject): Pokemon {
             val type2 = if (!jsonObject.isNull(JSON_KEY_TYPE_2)) {
                 Type.fromValue(jsonObject.getInt(JSON_KEY_TYPE_2))
             } else {
@@ -87,6 +88,7 @@ data class Pokemon(
             }
 
             return Pokemon(
+                number = number,
                 pokemonId = jsonObject.getString(JSON_KEY_POKEMON_ID),
                 name = name,
                 formName = formName,

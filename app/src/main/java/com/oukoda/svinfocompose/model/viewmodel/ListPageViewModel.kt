@@ -1,5 +1,6 @@
 package com.oukoda.svinfocompose.model.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.oukoda.svinfocompose.model.dataclass.Pokemon
@@ -12,19 +13,27 @@ class ListPageViewModel(private val pokemonList: List<Pokemon>) : ViewModel() {
     val showPokemonList = _showPokemonList
 
     private var selectedPokemon: Pokemon? = null
+    private var isAscending: Boolean = true
     private var searchWord: String = ""
+    var sortType: MutableStateFlow<SortType> = MutableStateFlow(SortType.Number)
 
     fun sort(sortType: SortType) {
-        val newList = when (sortType) {
+        var newList = when (sortType) {
             SortType.Number -> pokemonList
             SortType.HP -> pokemonList.sortedBy { it.hp }
             SortType.Attack -> pokemonList.sortedBy { it.attack }
             SortType.Defence -> pokemonList.sortedBy { it.defence }
             SortType.SpAttack -> pokemonList.sortedBy { it.spAttack }
-            SortType.SpDefence -> pokemonList.sortedBy { it.defence }
+            SortType.SpDefence -> pokemonList.sortedBy { it.spDefence }
             SortType.Speed -> pokemonList.sortedBy { it.speed }
         }
+        Log.d("TAG", "sort: $isAscending")
+        if (!isAscending) {
+            newList = newList.reversed()
+        }
+        this.sortType.value = sortType
         _showPokemonList.value = newList
+//        filterBySearchWord()
     }
 
     fun setSelectedPokemon(pokemon: Pokemon) {
@@ -38,6 +47,11 @@ class ListPageViewModel(private val pokemonList: List<Pokemon>) : ViewModel() {
     fun setSearchWord(searchWord: String) {
         this.searchWord = searchWord
         filterBySearchWord()
+    }
+
+    fun setSortMode(isAscending: Boolean) {
+        this.isAscending = isAscending
+        _showPokemonList.value = showPokemonList.value.reversed()
     }
 
     private fun filterBySearchWord() {

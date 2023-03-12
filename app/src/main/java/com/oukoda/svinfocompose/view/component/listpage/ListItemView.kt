@@ -22,15 +22,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.oukoda.svinfocompose.model.dataclass.Pokemon
+import com.oukoda.svinfocompose.model.enumclass.SortType
 import com.oukoda.svinfocompose.repository.JsonRepository
 import com.oukoda.svinfocompose.theme.SvInfoComposeTheme
 import com.oukoda.svinfocompose.view.component.common.PokemonImageView
 
 @Composable
 fun ListItemView(
-    number: Int,
     pokemon: Pokemon,
     onTap: (pokemon: Pokemon) -> Unit,
+    sortType: SortType,
 ) {
     Card(
         modifier = Modifier
@@ -44,11 +45,7 @@ fun ListItemView(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = (number + 1).toString().padStart(3, '0'),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.ExtraBold,
-            )
+            ValueText(pokemon, sortType)
             PokemonImageView(
                 pokemon = pokemon,
                 modifier = Modifier.size(80.dp),
@@ -81,6 +78,24 @@ fun ListItemView(
 }
 
 @Composable
+private fun ValueText(pokemon: Pokemon, sortType: SortType) {
+    val text: String = when (sortType) {
+        SortType.Number -> pokemon.number.toString().padStart(3, '0')
+        SortType.HP -> pokemon.hp.toString()
+        SortType.Attack -> pokemon.attack.toString()
+        SortType.Defence -> pokemon.defence.toString()
+        SortType.SpAttack -> pokemon.spAttack.toString()
+        SortType.SpDefence -> pokemon.spDefence.toString()
+        SortType.Speed -> pokemon.speed.toString()
+    }
+    Text(
+        text = text,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.ExtraBold,
+    )
+}
+
+@Composable
 private fun NameText(text: String) {
     Text(
         text = text,
@@ -106,7 +121,7 @@ fun ListItemViewPreview() {
         val pokemonList = repository.getPokemonList()
         LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             itemsIndexed(pokemonList) { index, pokemon ->
-                ListItemView(number = index, pokemon = pokemon, onTap = {})
+                ListItemView(pokemon = pokemon, onTap = {}, SortType.Number)
             }
         }
     }

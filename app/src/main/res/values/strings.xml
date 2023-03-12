@@ -43,4 +43,13 @@
     <string name="move_category_special">特殊</string>
     <string name="move_category_status">変化</string>
 
+
+    <string name="sort_type_number">番号順</string>
+    <string name="sort_type_hp">HP順</string>
+    <string name="sort_type_attack">攻撃順</string>
+    <string name="sort_type_defence">防御順</string>
+    <string name="sort_type_sp_attack">特攻順</string>
+    <string name="sort_type_sp_defence">特防順</string>
+    <string name="sort_type_speed">素早さ順</string>
+
 </resources>
