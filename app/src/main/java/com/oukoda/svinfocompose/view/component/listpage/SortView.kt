@@ -1,7 +1,6 @@
 package com.oukoda.svinfocompose.view.component.listpage
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
@@ -42,48 +41,50 @@ fun SortView(
     }
 
     Box(modifier = modifier) {
-        Column(horizontalAlignment = Alignment.End) {
-            ExtendedFloatingActionButton(
-                text = { Text(text = stringResource(id = sortType.stringId)) },
-                icon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.sort),
-                        contentDescription = "",
-                    )
-                },
-                onClick = {
-                    isExpand = !isExpand
+        ExtendedFloatingActionButton(
+            modifier = Modifier.align(Alignment.CenterStart),
+            text = { Text(text = stringResource(id = sortType.stringId)) },
+            icon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.sort),
+                    contentDescription = "",
+                )
+            },
+            onClick = {
+                isExpand = !isExpand
+            },
+        )
+
+        Row(
+            modifier = Modifier.align(Alignment.CenterEnd),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(text = "降順にする")
+            Switch(
+                checked = isChecked,
+                onCheckedChange = {
+                    isChecked = it
+                    onChangeSortMode(!isChecked)
                 },
             )
-
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "降順にする")
-                Switch(
-                    checked = isChecked,
-                    onCheckedChange = {
-                        isChecked = it
-                        onChangeSortMode(!isChecked)
-                    },
-                )
-            }
         }
+    }
 
-        DropdownMenu(
-            expanded = isExpand,
-            onDismissRequest = {
-                isExpand = false
-            },
-        ) {
-            SortType.values().forEachIndexed { _, itemValue ->
-                DropdownMenuItem(
-                    onClick = {
-                        sortType = itemValue
-                        onSelectSortType(itemValue)
-                        isExpand = false
-                    },
-                ) {
-                    Text(text = stringResource(id = itemValue.stringId))
-                }
+    DropdownMenu(
+        expanded = isExpand,
+        onDismissRequest = {
+            isExpand = false
+        },
+    ) {
+        SortType.values().forEachIndexed { _, itemValue ->
+            DropdownMenuItem(
+                onClick = {
+                    sortType = itemValue
+                    onSelectSortType(itemValue)
+                    isExpand = false
+                },
+            ) {
+                Text(text = stringResource(id = itemValue.stringId))
             }
         }
     }

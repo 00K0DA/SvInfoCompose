@@ -1,23 +1,25 @@
 package com.oukoda.svinfocompose.model.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.oukoda.svinfocompose.model.dataclass.Pokemon
 import com.oukoda.svinfocompose.model.enumclass.SortType
+import com.oukoda.svinfocompose.util.Hira2KanaConverter
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 
 class ListPageViewModel(private val pokemonList: List<Pokemon>) : ViewModel() {
 
-    private val _showPokemonList: MutableStateFlow<List<Pokemon>> = MutableStateFlow(pokemonList)
-    val showPokemonList = _showPokemonList
-
     private var selectedPokemon: Pokemon? = null
-    private var isAscending: Boolean = true
-    private var searchWord: String = ""
+    private var isAscending: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    var searchWord: MutableStateFlow<String> = MutableStateFlow("")
     var sortType: MutableStateFlow<SortType> = MutableStateFlow(SortType.Number)
 
-    fun sort(sortType: SortType) {
+    val showPokemonList: StateFlow<List<Pokemon>> = combine(sortType, isAscending, searchWord) { sortType: SortType, isAscending: Boolean, searchWord: String ->
         var newList = when (sortType) {
             SortType.Number -> pokemonList
             SortType.HP -> pokemonList.sortedBy { it.hp }
@@ -27,13 +29,21 @@ class ListPageViewModel(private val pokemonList: List<Pokemon>) : ViewModel() {
             SortType.SpDefence -> pokemonList.sortedBy { it.spDefence }
             SortType.Speed -> pokemonList.sortedBy { it.speed }
         }
-        Log.d("TAG", "sort: $isAscending")
         if (!isAscending) {
             newList = newList.reversed()
         }
+        if (searchWord != "") {
+            newList = newList.filter { it.name.startsWith(Hira2KanaConverter.convert(searchWord)) }
+        }
+        newList
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(),
+        listOf(),
+    )
+
+    fun setSort(sortType: SortType) {
         this.sortType.value = sortType
-        _showPokemonList.value = newList
-//        filterBySearchWord()
     }
 
     fun setSelectedPokemon(pokemon: Pokemon) {
@@ -45,20 +55,11 @@ class ListPageViewModel(private val pokemonList: List<Pokemon>) : ViewModel() {
     }
 
     fun setSearchWord(searchWord: String) {
-        this.searchWord = searchWord
-        filterBySearchWord()
+        this.searchWord.value = searchWord
     }
 
     fun setSortMode(isAscending: Boolean) {
-        this.isAscending = isAscending
-        _showPokemonList.value = showPokemonList.value.reversed()
-    }
-
-    private fun filterBySearchWord() {
-        val showList = showPokemonList.value
-        val startWithList = showList.filter { it.name.startsWith(searchWord) }
-        val containsList = showList.minus(showList.toSet()).filter { it.name.contains(searchWord) }
-        _showPokemonList.value = startWithList + containsList
+        this.isAscending.value = isAscending
     }
 
     @Suppress("UNCHECKED_CAST")
