@@ -19,7 +19,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.oukoda.svinfocompose.model.enumclass.BottomItems
-import com.oukoda.svinfocompose.model.enumclass.SortType
 import com.oukoda.svinfocompose.model.rememberForeverLazyListState
 import com.oukoda.svinfocompose.model.viewmodel.ListPageViewModel
 import com.oukoda.svinfocompose.repository.JsonRepository
@@ -40,6 +39,7 @@ fun ListPage(
 ) {
     val pokemonList by viewModel.showPokemonList.collectAsState()
     val sortType by viewModel.sortType.collectAsState()
+    val isAscending by viewModel.isAscending.collectAsState()
     val searchWord by viewModel.searchWord.collectAsState()
     val navController = rememberNavController()
 
@@ -65,7 +65,8 @@ fun ListPage(
                     ) {
                         Box(modifier = Modifier.padding(vertical = 8.dp)) {
                             SortView(
-                                initialSortType = SortType.Number,
+                                sortType = sortType,
+                                isAscending = isAscending,
                                 onSelectSortType = { viewModel.setSort(it) },
                                 onChangeSortMode = { viewModel.setSortMode(it) },
                                 modifier = Modifier.fillMaxWidth(),
