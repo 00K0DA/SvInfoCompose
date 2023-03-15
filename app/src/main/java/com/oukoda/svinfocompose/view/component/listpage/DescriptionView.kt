@@ -37,7 +37,7 @@ fun DescriptionView(
     onTapClose: () -> Unit,
     viewModel: DescriptionViewModel = viewModel(
         factory = DescriptionViewModel.DescriptionViewModelFactory(repository, pokemon),
-        ),
+    ),
 ) {
     val backGroundAlpha = 0.5F
     val pokemonMoves by viewModel.pokemonMoves.collectAsState()
