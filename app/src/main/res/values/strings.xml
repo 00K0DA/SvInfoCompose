@@ -54,4 +54,8 @@
 
     <string name="search_text_field_label">検索</string>
 
+    <string name="move_learning_type_level">レベル</string>
+    <string name="move_learning_type_machine">技マシン</string>
+    <string name="move_learning_type_egg">卵</string>
+
 </resources>

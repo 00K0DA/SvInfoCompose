@@ -99,7 +99,8 @@ fun ListPage(
                 DescriptionView(
                     selectedPokemon,
                     repository,
-                ) { navController.navigate(ROUTE_LIST) }
+                    { navController.navigate(ROUTE_LIST) },
+                )
             }
         }
     }
