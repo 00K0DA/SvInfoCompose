@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.oukoda.svinfocompose.model.dataclass.Move
 import com.oukoda.svinfocompose.model.dataclass.PokemonMove
 import com.oukoda.svinfocompose.model.enumclass.MoveLearningType
@@ -53,7 +54,12 @@ fun MoveView(pokemonMove: PokemonMove, modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Center,
             )
             TypeView(type = move.moveType)
-            Text(text = stringResource(pokemonMove.moveLearningType.stringId), fontSize = 12.sp)
+            Text(
+                text = stringResource(pokemonMove.moveLearningType.stringId),
+                fontSize = 12.sp,
+                modifier = Modifier.width(24.dp),
+                textAlign = TextAlign.Center,
+            )
             ExpandView(isExpand = isExpand)
         }
         AnimatedVisibility(visible = isExpand) {
