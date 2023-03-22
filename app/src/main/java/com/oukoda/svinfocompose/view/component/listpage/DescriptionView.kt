@@ -120,7 +120,7 @@ fun DescriptionView(
             }
 
             items(pokemonMoves) { item ->
-                MoveView(move = item.move)
+                MoveView(pokemonMove = item)
             }
         }
     }

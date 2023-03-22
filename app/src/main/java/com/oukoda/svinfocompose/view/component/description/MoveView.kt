@@ -19,10 +19,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.oukoda.svinfocompose.model.dataclass.Move
+import com.oukoda.svinfocompose.model.dataclass.PokemonMove
+import com.oukoda.svinfocompose.model.enumclass.MoveLearningType
 import com.oukoda.svinfocompose.repository.JsonRepository
 import com.oukoda.svinfocompose.theme.SvInfoComposeTheme
 import com.oukoda.svinfocompose.view.component.TypeView
@@ -30,7 +34,8 @@ import com.oukoda.svinfocompose.view.component.common.ExpandView
 import com.oukoda.svinfocompose.view.component.common.MoveCategoryView
 
 @Composable
-fun MoveView(move: Move, modifier: Modifier = Modifier) {
+fun MoveView(pokemonMove: PokemonMove, modifier: Modifier = Modifier) {
+    val move = pokemonMove.move
     var isExpand by remember { mutableStateOf(false) }
     val powerString: String = if (move.power != Move.INVALID_POWER) move.power.toString() else "-"
     Column(modifier = modifier) {
@@ -42,13 +47,19 @@ fun MoveView(move: Move, modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(text = move.name, modifier = Modifier.weight(2f, true))
-            MoveCategoryView(moveCategory = move.category)
+            MoveCategoryView(moveCategory = move.category, modifier = Modifier.width(48.dp))
             Text(
                 text = powerString,
                 modifier = Modifier.width(32.dp),
                 textAlign = TextAlign.Center,
             )
             TypeView(type = move.moveType)
+            Text(
+                text = stringResource(pokemonMove.moveLearningType.stringId),
+                fontSize = 12.sp,
+                modifier = Modifier.width(24.dp),
+                textAlign = TextAlign.Center,
+            )
             ExpandView(isExpand = isExpand)
         }
         AnimatedVisibility(visible = isExpand) {
@@ -69,7 +80,7 @@ fun MoveViewPreview() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             items(repository.getMoveList().toList()) {
-                MoveView(move = it)
+                MoveView(pokemonMove = PokemonMove(MoveLearningType.Level, it))
             }
         }
     }
