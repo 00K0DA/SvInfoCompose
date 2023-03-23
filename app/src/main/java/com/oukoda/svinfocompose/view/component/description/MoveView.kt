@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,6 +33,20 @@ import com.oukoda.svinfocompose.theme.SvInfoComposeTheme
 import com.oukoda.svinfocompose.view.component.TypeView
 import com.oukoda.svinfocompose.view.component.common.ExpandView
 import com.oukoda.svinfocompose.view.component.common.MoveCategoryView
+
+@Composable
+fun MovesView(pokemonMoves: List<PokemonMove>, modifier: Modifier = Modifier) {
+    Card(modifier = modifier) {
+        Column(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            pokemonMoves.forEach {
+                MoveView(pokemonMove = it)
+            }
+        }
+    }
+}
 
 @Composable
 fun MoveView(pokemonMove: PokemonMove, modifier: Modifier = Modifier) {

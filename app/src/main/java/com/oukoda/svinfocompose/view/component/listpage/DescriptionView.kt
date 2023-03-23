@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,7 +25,7 @@ import com.oukoda.svinfocompose.model.viewmodel.DescriptionViewModel
 import com.oukoda.svinfocompose.repository.JsonRepository
 import com.oukoda.svinfocompose.view.component.common.PokemonImageView
 import com.oukoda.svinfocompose.view.component.description.AbilitiesView
-import com.oukoda.svinfocompose.view.component.description.MoveView
+import com.oukoda.svinfocompose.view.component.description.MovesView
 import com.oukoda.svinfocompose.view.component.description.NameTypeView
 import com.oukoda.svinfocompose.view.component.description.StatusRowsView
 
@@ -119,8 +118,8 @@ fun DescriptionView(
                 StatusRowsView(pokemon = pokemon)
             }
 
-            items(pokemonMoves) { item ->
-                MoveView(pokemonMove = item)
+            item {
+                MovesView(pokemonMoves = pokemonMoves)
             }
         }
     }
