@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.oukoda.svinfocompose.R
@@ -39,6 +40,12 @@ fun AbilitiesView(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            Text(
+                stringResource(id = R.string.description_ability_title),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+            )
+
             if (ability1st.abilityId == ability2nd.abilityId && ability1st.abilityId == hiddenAbility.abilityId) {
                 AbilityView(
                     ability = ability1st,
@@ -102,7 +109,7 @@ private fun AbilityView(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                modifier = Modifier.width(60.dp),
+                modifier = Modifier.width(68.dp),
                 text = abilityLabelString,
                 fontSize = 14.sp,
             )
