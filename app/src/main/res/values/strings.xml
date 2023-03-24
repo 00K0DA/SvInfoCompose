@@ -82,6 +82,8 @@
     <string name="move_description_view_snatch">可否: よこどり</string>
     <string name="move_description_view_mirror_move">可否: オウム返し</string>
     <string name="move_description_view_substitute">身代わり貫通</string>
-<string name="move_description_view_move_description">技説明</string>
+    <string name="move_description_view_move_description">技説明</string>
+
+    <string name="description_view_close">閉じる</string>
 
 </resources>

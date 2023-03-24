@@ -1,7 +1,6 @@
 package com.oukoda.svinfocompose.view.component.listpage
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,9 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.oukoda.svinfocompose.R
 import com.oukoda.svinfocompose.model.dataclass.Pokemon
 import com.oukoda.svinfocompose.model.viewmodel.DescriptionViewModel
 import com.oukoda.svinfocompose.repository.JsonRepository
+import com.oukoda.svinfocompose.view.component.common.CommonButton
 import com.oukoda.svinfocompose.view.component.common.PokemonImageView
 import com.oukoda.svinfocompose.view.component.description.AbilitiesView
 import com.oukoda.svinfocompose.view.component.description.MovesView
@@ -43,8 +44,7 @@ fun DescriptionView(
     val pokemonMoves by viewModel.pokemonMoves.collectAsState()
     Card(
         modifier = Modifier
-            .fillMaxSize()
-            .clickable { onTapClose() },
+            .fillMaxSize(),
     ) {
         LazyColumn(
             modifier = Modifier
@@ -124,7 +124,15 @@ fun DescriptionView(
             }
 
             item {
+                CommonButton(stringId = R.string.description_view_close, onClick = { onTapClose() })
+            }
+
+            item {
                 MovesView(pokemonMoves = pokemonMoves)
+            }
+
+            item {
+                CommonButton(stringId = R.string.description_view_close, onClick = { onTapClose() })
             }
 
             item {
