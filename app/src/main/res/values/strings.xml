@@ -58,4 +58,30 @@
     <string name="move_learning_type_machine">技マ</string>
     <string name="move_learning_type_egg">卵</string>
 
+    <string name="move_target_select_one">1体選択</string>
+    <string name="move_target_self_or_ally">自身か味方</string>
+    <string name="move_target_ally_one">味方1体</string>
+    <string name="move_target_none">無し</string>
+    <string name="move_target_without_self">自身以外</string>
+    <string name="move_target_enemy_all">敵全体</string>
+    <string name="move_target_ally_all">味方全体</string>
+    <string name="move_target_self">自身</string>
+    <string name="move_target_all">全体</string>
+    <string name="move_target_random_one">ランダム1体</string>
+    <string name="move_target_all_field">フィールド全体</string>
+    <string name="move_target_enemy_field">敵フィールド</string>
+    <string name="move_target_ally_field">味方フィールド</string>
+    <string name="move_target_undecided">選べない</string>
+
+    <string name="move_description_view_accuracy">命中</string>
+    <string name="move_description_view_pp">PP</string>
+    <string name="move_description_view_target">対象</string>
+    <string name="move_description_view_is_direct">直接攻撃</string>
+    <string name="move_description_view_can_protect">可否: 守る</string>
+    <string name="move_description_view_magic_coat">可否: マジックコート</string>
+    <string name="move_description_view_snatch">可否: よこどり</string>
+    <string name="move_description_view_mirror_move">可否: オウム返し</string>
+    <string name="move_description_view_substitute">身代わり貫通</string>
+<string name="move_description_view_move_description">技説明</string>
+
 </resources>

@@ -39,6 +39,7 @@ data class Move(
         private const val JSON_KEY_SUBSTITUTE = "substitute"
         private const val JSON_KEY_DESCRIPTION = "description"
         const val INVALID_POWER = -1
+        const val INVALID_ACCURACY = -1
         fun fromJson(jsonObject: JSONObject): Move {
             return Move(
                 moveId = jsonObject.getInt(JSON_KEY_MOVE_ID),
