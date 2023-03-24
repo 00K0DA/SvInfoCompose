@@ -53,10 +53,9 @@ fun MoveView(pokemonMove: PokemonMove, modifier: Modifier = Modifier) {
     val move = pokemonMove.move
     var isExpand by remember { mutableStateOf(false) }
     val powerString: String = if (move.power != Move.INVALID_POWER) move.power.toString() else "-"
-    Column(modifier = modifier) {
+    Column(modifier = modifier.padding(vertical = 8.dp)) {
         Row(
             modifier = Modifier
-                .padding(vertical = 4.dp)
                 .clickable { isExpand = !isExpand },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -79,7 +78,10 @@ fun MoveView(pokemonMove: PokemonMove, modifier: Modifier = Modifier) {
         }
         AnimatedVisibility(visible = isExpand) {
             Column(modifier = Modifier.fillMaxWidth()) {
-                Text("test")
+                MoveDescriptionView(
+                    move = pokemonMove.move,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp),
+                )
             }
         }
     }

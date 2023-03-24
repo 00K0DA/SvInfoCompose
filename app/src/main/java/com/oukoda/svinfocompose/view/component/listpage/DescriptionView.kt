@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -69,10 +70,14 @@ fun DescriptionView(
                         )
                     }
                 }
-                .padding(all = 16.dp),
+                .padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+
             item {
                 Row(
                     modifier = Modifier
@@ -120,6 +125,10 @@ fun DescriptionView(
 
             item {
                 MovesView(pokemonMoves = pokemonMoves)
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
