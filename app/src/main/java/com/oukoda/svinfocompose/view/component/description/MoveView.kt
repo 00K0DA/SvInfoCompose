@@ -21,10 +21,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.oukoda.svinfocompose.R
 import com.oukoda.svinfocompose.model.dataclass.Move
 import com.oukoda.svinfocompose.model.dataclass.PokemonMove
 import com.oukoda.svinfocompose.model.enumclass.MoveLearningType
@@ -38,9 +40,14 @@ import com.oukoda.svinfocompose.view.component.common.MoveCategoryView
 fun MovesView(pokemonMoves: List<PokemonMove>, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
         Column(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.padding(all = 16.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
+            Text(
+                stringResource(id = R.string.move_view_title),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+            )
             pokemonMoves.forEach {
                 MoveView(pokemonMove = it)
             }

@@ -24,9 +24,11 @@
     <string name="type_name_dark">あく</string>
     <string name="type_name_fairy">フェアリー</string>
 
-    <string name="description_ability_normal">特性</string>
+    <string name="description_ability_title">特性</string>
+    <string name="description_ability_normal">通常特性</string>
     <string name="description_ability_hidden">夢特性</string>
 
+    <string name="status_row_title">種族値</string>
     <string name="status_row_hp">HP</string>
     <string name="status_row_attack">攻撃</string>
     <string name="status_row_defence">防御</string>
@@ -54,6 +56,7 @@
 
     <string name="search_text_field_label">検索</string>
 
+    <string name="move_view_title">技 一覧</string>
     <string name="move_learning_type_level">Lv.</string>
     <string name="move_learning_type_machine">技マ</string>
     <string name="move_learning_type_egg">卵</string>

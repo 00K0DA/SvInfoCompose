@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.oukoda.svinfocompose.R
@@ -186,6 +187,11 @@ fun StatusRowsView(
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
+            Text(
+                stringResource(id = R.string.status_row_title),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+            )
             StatusType.values().forEach {
                 StatusRowView(statusType = it, pokemon = pokemon)
             }
