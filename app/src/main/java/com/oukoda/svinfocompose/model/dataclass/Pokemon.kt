@@ -3,9 +3,9 @@ package com.oukoda.svinfocompose.model.dataclass
 import android.annotation.SuppressLint
 import android.content.Context
 import com.oukoda.svinfocompose.model.enumclass.Type
+import com.oukoda.svinfocompose.util.StatusCalculator
 import org.json.JSONArray
 import org.json.JSONObject
-import kotlin.math.floor
 
 data class Pokemon(
     val number: Int,
@@ -113,14 +113,7 @@ data class Pokemon(
     fun getTotalValue() = listOf(hp, attack, defence, spAttack, spDefence, speed).sum()
 
     fun calculateHp(individualValue: Int, effortValue: Int, level: Int = 50): Int {
-        return floor(
-            (
-                (this.hp * 2 + individualValue + floor(effortValue / 4.0).toInt()) *
-                    level
-                ) /
-                100.0,
-        )
-            .toInt() + level + 10
+        return StatusCalculator.calculateHp(hp, individualValue, effortValue, level)
     }
 
     fun calculateAttack(
@@ -129,7 +122,13 @@ data class Pokemon(
         natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
-        return calculateStatus(this.attack, individualValue, effortValue, natureCorrect, level)
+        return StatusCalculator.calculateStatus(
+            this.attack,
+            individualValue,
+            effortValue,
+            natureCorrect,
+            level,
+        )
     }
 
     fun calculateDefence(
@@ -138,7 +137,13 @@ data class Pokemon(
         natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
-        return calculateStatus(this.defence, individualValue, effortValue, natureCorrect, level)
+        return StatusCalculator.calculateStatus(
+            this.defence,
+            individualValue,
+            effortValue,
+            natureCorrect,
+            level,
+        )
     }
 
     fun calculateSpAttack(
@@ -147,7 +152,13 @@ data class Pokemon(
         natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
-        return calculateStatus(this.spAttack, individualValue, effortValue, natureCorrect, level)
+        return StatusCalculator.calculateStatus(
+            this.spAttack,
+            individualValue,
+            effortValue,
+            natureCorrect,
+            level,
+        )
     }
 
     fun calculateSpDefence(
@@ -156,7 +167,13 @@ data class Pokemon(
         natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
-        return calculateStatus(this.spDefence, individualValue, effortValue, natureCorrect, level)
+        return StatusCalculator.calculateStatus(
+            this.spDefence,
+            individualValue,
+            effortValue,
+            natureCorrect,
+            level,
+        )
     }
 
     fun calculateSpeed(
@@ -165,24 +182,13 @@ data class Pokemon(
         natureCorrect: Int = NATURE_CORRECT_NONE,
         level: Int = 50,
     ): Int {
-        return calculateStatus(this.speed, individualValue, effortValue, natureCorrect, level)
-    }
-
-    private fun calculateStatus(
-        baseStats: Int,
-        individualValue: Int,
-        effortValue: Int,
-        natureCorrect: Int,
-        level: Int,
-    ): Int {
-        val statusValue: Int = floor(
-            ((baseStats * 2 + individualValue + floor(effortValue / 4.0).toInt()) * level) / 100.0,
-        ).toInt() + 5
-        return when (natureCorrect) {
-            NATURE_CORRECT_POSITIVE -> floor(statusValue * 1.1).toInt()
-            NATURE_CORRECT_NEGATIVE -> floor(statusValue * 0.9).toInt()
-            else -> statusValue
-        }
+        return StatusCalculator.calculateStatus(
+            this.speed,
+            individualValue,
+            effortValue,
+            natureCorrect,
+            level,
+        )
     }
 
     @SuppressLint("DiscouragedApi")
