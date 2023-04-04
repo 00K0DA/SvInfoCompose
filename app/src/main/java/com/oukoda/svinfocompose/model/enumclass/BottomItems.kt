@@ -1,35 +1,21 @@
 package com.oukoda.svinfocompose.model.enumclass
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.oukoda.svinfocompose.R
 
-enum class BottomItems {
-    List,
-    Sort,
-    Quiz,
+enum class BottomItems(@StringRes val stringId: Int, @DrawableRes val drawableId: Int) {
+    List(R.string.bottom_item_list, R.drawable.list),
+    Sort(R.string.bottom_item_sort, R.drawable.sort),
+    Quiz(R.string.bottom_item_quiz, R.drawable.quiz),
 
     ;
-
-    fun stringId(): Int {
-        return when (this) {
-            List -> R.string.bottom_item_list
-            Sort -> R.string.bottom_item_sort
-            Quiz -> R.string.bottom_item_quiz
-        }
-    }
 
     fun route(): String {
         return when (this) {
             List -> "list"
             Sort -> "sort"
             Quiz -> "quiz"
-        }
-    }
-
-    fun drawableId(): Int {
-        return when (this) {
-            List -> R.drawable.list
-            Sort -> R.drawable.sort
-            Quiz -> R.drawable.quiz
         }
     }
 

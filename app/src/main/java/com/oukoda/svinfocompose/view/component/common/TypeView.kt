@@ -35,7 +35,7 @@ fun TypeView(type: Type, modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = stringResource(id = type.stringId()),
+            text = stringResource(id = type.stringId),
             fontSize = 12.sp,
             fontWeight = FontWeight.ExtraBold,
             color = Color.White,
