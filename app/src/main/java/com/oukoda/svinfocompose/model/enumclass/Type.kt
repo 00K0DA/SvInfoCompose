@@ -1,5 +1,6 @@
 package com.oukoda.svinfocompose.model.enumclass
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import com.oukoda.svinfocompose.R
 import com.oukoda.svinfocompose.theme.typeColorBug
@@ -21,25 +22,25 @@ import com.oukoda.svinfocompose.theme.typeColorRock
 import com.oukoda.svinfocompose.theme.typeColorSteel
 import com.oukoda.svinfocompose.theme.typeColorWater
 
-enum class Type(val value: Int) {
-    Normal(0),
-    Fight(1),
-    Fly(2),
-    Poison(3),
-    Ground(4),
-    Rock(5),
-    Bug(6),
-    Ghost(7),
-    Steel(8),
-    Fire(9),
-    Water(10),
-    Grass(11),
-    Electric(12),
-    Psychic(13),
-    Ice(14),
-    Dragon(15),
-    Dark(16),
-    Fairy(17),
+enum class Type(val value: Int, @StringRes val stringId: Int) {
+    Normal(0, R.string.type_name_normal),
+    Fight(1, R.string.type_name_fight),
+    Fly(2, R.string.type_name_fly),
+    Poison(3, R.string.type_name_poison),
+    Ground(4, R.string.type_name_ground),
+    Rock(5, R.string.type_name_rock),
+    Bug(6, R.string.type_name_bug),
+    Ghost(7, R.string.type_name_ghost),
+    Steel(8, R.string.type_name_steel),
+    Fire(9, R.string.type_name_fire),
+    Water(10, R.string.type_name_water),
+    Grass(11, R.string.type_name_grass),
+    Electric(12, R.string.type_name_electric),
+    Psychic(13, R.string.type_name_psychic),
+    Ice(14, R.string.type_name_ice),
+    Dragon(15, R.string.type_name_dragon),
+    Dark(16, R.string.type_name_dark),
+    Fairy(17, R.string.type_name_fairy),
     ;
 
     companion object {
@@ -73,29 +74,6 @@ enum class Type(val value: Int) {
             Dragon -> typeColorDragon
             Dark -> typeColorDark
             Fairy -> typeColorFairy
-        }
-    }
-
-    fun stringId(): Int {
-        return when (this) {
-            Normal -> R.string.type_name_normal
-            Fight -> R.string.type_name_fight
-            Fly -> R.string.type_name_fly
-            Poison -> R.string.type_name_poison
-            Ground -> R.string.type_name_ground
-            Rock -> R.string.type_name_rock
-            Bug -> R.string.type_name_bug
-            Ghost -> R.string.type_name_ghost
-            Steel -> R.string.type_name_steel
-            Fire -> R.string.type_name_fire
-            Water -> R.string.type_name_water
-            Grass -> R.string.type_name_grass
-            Electric -> R.string.type_name_electric
-            Psychic -> R.string.type_name_psychic
-            Ice -> R.string.type_name_ice
-            Dragon -> R.string.type_name_dragon
-            Dark -> R.string.type_name_dark
-            Fairy -> R.string.type_name_fairy
         }
     }
 }

@@ -87,10 +87,10 @@ fun MainScreen() {
                             ListPage(jsonRepository)
                         }
                         composable(BottomItems.Sort.route()) {
-                            Text(text = stringResource(id = BottomItems.Sort.stringId()))
+                            Text(text = stringResource(id = BottomItems.Sort.stringId))
                         }
                         composable(BottomItems.Quiz.route()) {
-                            Text(text = stringResource(id = BottomItems.Quiz.stringId()))
+                            Text(text = stringResource(id = BottomItems.Quiz.stringId))
                         }
                     }
                 }

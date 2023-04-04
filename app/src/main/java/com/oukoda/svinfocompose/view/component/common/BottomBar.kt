@@ -27,10 +27,10 @@ fun BottomBar(initialRoute: String, onTap: (BottomItems) -> Unit) {
                     route = bottomItem.route()
                     onTap(bottomItem)
                 },
-                label = { Text(stringResource(id = bottomItem.stringId())) },
+                label = { Text(stringResource(id = bottomItem.stringId)) },
                 icon = {
                     Icon(
-                        painter = painterResource(id = bottomItem.drawableId()),
+                        painter = painterResource(id = bottomItem.drawableId),
                         contentDescription = "",
                     )
                 },

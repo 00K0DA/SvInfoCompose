@@ -1,8 +1,9 @@
 package com.oukoda.svinfocompose.model.enumclass
 
+import androidx.annotation.StringRes
 import com.oukoda.svinfocompose.R
 
-enum class MoveTarget(val value: Int, val stringId: Int) {
+enum class MoveTarget(val value: Int, @StringRes val stringId: Int) {
     SelectOne(0, R.string.move_target_select_one),
     SelfOrAlly(1, R.string.move_target_self_or_ally),
     AllyOne(2, R.string.move_target_ally_one),
